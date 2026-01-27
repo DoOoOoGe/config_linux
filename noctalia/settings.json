@@ -505,6 +505,10 @@
             {
                 "enabled": true,
                 "id": "kitty"
+            },
+            {
+                "enabled": true,
+                "id": "alacritty"
             }
         ],
         "enableUserTheming": false

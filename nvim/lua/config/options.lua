@@ -28,3 +28,5 @@ vim.diagnostic.config({
 -- 左右键可跨行
 vim.o.whichwrap = vim.o.whichwrap .. "<>,h,l"
 
+-- Rust 支持
+vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
