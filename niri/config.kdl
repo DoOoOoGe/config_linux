@@ -13,8 +13,25 @@ input {
     }
 
     touchpad {
-        tap // Enable tap-to-click
-        natural-scroll // Enable natural (macOS-style) scrolling
+        // off
+        tap
+        dwt
+        dwtp
+        drag true
+        drag-lock
+        natural-scroll
+        accel-speed 0.2
+        accel-profile "flat"
+        scroll-factor 1.0
+        // scroll-factor vertical=1.0 horizontal=-2.0
+        scroll-method "two-finger"
+        scroll-button 273
+        scroll-button-lock
+        tap-button-map "left-middle-right"
+        click-method "clickfinger"
+        // left-handed
+        disabled-on-external-mouse
+        middle-emulation
     }
 
     // focus-follows-mouse // Automatically focus windows under the mouse pointer
@@ -59,11 +76,12 @@ binds {
     XF86AudioPrev                       allow-when-locked=true { spawn-sh "playerctl previous"; }
 
     // --- quickshell ---
-    MOD+I				{ spawn-sh "qs -c noctalia-shell ipc call settings toggle"; }
-    MOD+SPACE				{ spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
-    MOD+P				{ spawn-sh "qs -c noctalia-shell ipc call wallpaper toggle"; }
-    MOD+V				{ spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"; }
-    MOD+F4				{ spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    MOD+I			                        	{ spawn-sh "qs -c noctalia-shell ipc call settings toggle"; }
+    MOD+SPACE                      			{ spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    MOD+P			                        	{ spawn-sh "qs -c noctalia-shell ipc call wallpaper toggle"; }
+    MOD+V			                        	{ spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"; }
+    MOD+F4	                        		{ spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    MOD+F10                             { spawn-sh "qs -c noctalia-shell ipc call bar toggle"; }
 
     // ─── Window Movement and Focus ───
     MOD+Q                               { close-window; }

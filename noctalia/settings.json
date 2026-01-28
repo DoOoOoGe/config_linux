@@ -136,7 +136,7 @@
                     "showArtistFirst": true,
                     "showProgressRing": true,
                     "showVisualizer": false,
-                    "useFixedWidth": false,
+                    "useFixedWidth": true,
                     "visualizerType": "mirrored"
                 },
                 {
@@ -147,7 +147,8 @@
                     "hidePassive": false,
                     "id": "Tray",
                     "pinned": [
-                        "Keyboard - English (US)"
+                        "Keyboard - English (US)",
+                        "Input Method"
                     ]
                 },
                 {
@@ -158,12 +159,12 @@
                 },
                 {
                     "deviceNativePath": "",
-                    "displayMode": "onhover",
+                    "displayMode": "alwaysShow",
                     "hideIfIdle": false,
                     "hideIfNotDetected": true,
                     "id": "Battery",
                     "showNoctaliaPerformance": false,
-                    "showPowerProfiles": false,
+                    "showPowerProfiles": true,
                     "warningThreshold": 30
                 },
                 {
@@ -421,9 +422,9 @@
     "sessionMenu": {
         "countdownDuration": 10000,
         "enableCountdown": true,
-        "largeButtonsLayout": "single-row",
+        "largeButtonsLayout": "grid",
         "largeButtonsStyle": false,
-        "position": "bottom_center",
+        "position": "center",
         "powerOptions": [
             {
                 "action": "lock",
@@ -462,7 +463,7 @@
                 "enabled": true
             }
         ],
-        "showHeader": true,
+        "showHeader": false,
         "showNumberLabels": true
     },
     "settingsVersion": 44,
@@ -549,7 +550,7 @@
         "transitionType": "random",
         "useSolidColor": false,
         "useWallhaven": false,
-        "viewMode": "recursive",
+        "viewMode": "browse",
         "wallhavenApiKey": "",
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
