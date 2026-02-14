@@ -44,7 +44,7 @@ input {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 
 output "Virtual-1" {
-    mode "2560x1600@60.000" // Set resolution and refresh rate
+    mode "2560x1600@59.972" // Set resolution and refresh rate
     scale 1.5 // No scaling (use 2 for HiDPI)
 }
 
@@ -167,17 +167,17 @@ binds {
     MOD+TAB                             { focus-workspace-previous; }
 
     // ─── Layout Controls ───
-    MOD+CTRL+F                          { expand-column-to-available-width; }
+    MOD+F                          { expand-column-to-available-width; }
     MOD+C                               { center-column; }
     MOD+CTRL+C                          { center-visible-columns; }
-    MOD+MINUS                           { set-column-width "-10%"; }
-    MOD+EQUAL                           { set-column-width "+10%"; }
-    MOD+SHIFT+MINUS                     { set-window-height "-10%"; }
-    MOD+SHIFT+EQUAL                     { set-window-height "+10%"; }
+    MOD+MINUS                           { set-column-width "-2%"; }
+    MOD+EQUAL                           { set-column-width "+2%"; }
+    MOD+SHIFT+MINUS                     { set-window-height "-2%"; }
+    MOD+SHIFT+EQUAL                     { set-window-height "+2%"; }
 
     // ─── Modes ───
     MOD+T                               { toggle-window-floating; }
-    MOD+F                               { fullscreen-window; }
+    MOD+ALT+F                               { fullscreen-window; }
     MOD+W                               { toggle-column-tabbed-display; }
 
     // ─── Screenshots ───
@@ -215,6 +215,10 @@ binds {
         gaps 8 // Gap between windows
         center-focused-column "never" // Don’t auto-center focused column
 
+        always-center-single-column // always center when the workspace has only one column
+
+        default-column-display "normal"
+
         preset-column-widths {
             proportion 0.33333
             proportion 0.5
@@ -241,6 +245,7 @@ binds {
 // ────────────── Animation Settings ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
     animations {
+        slowdown 1.0
         workspace-switch {
             spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
         }
@@ -313,4 +318,6 @@ layer-rule {
     }
 
 include "./noctalia.kdl"
+
+
 
