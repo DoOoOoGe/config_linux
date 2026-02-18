@@ -85,7 +85,7 @@ return {
       enabled = true;
       animate = {
         duration = { step = 3, total = 100 },
-        easing = "outQuad",
+        easing = "linear",
       },
       -- faster animation when repeating scroll after delay
 --      animate_repeat = {

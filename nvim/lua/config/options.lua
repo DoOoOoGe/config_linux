@@ -6,6 +6,9 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- 流动保留行
+vim.opt.scrolloff = 5
+
 -- 光标行
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
