@@ -64,6 +64,34 @@ return {
       }
       vim.lsp.enable("cmake")
 
+      -- =================== Rust =====================
+      vim.lsp.config["rust"] = {
+        cmd = { "rust-analyzer" },
+        filetypes = { "rust" },
+        root_markers = { "Cargo.toml", ".git" },
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          ['rust-analyzer'] = {
+            diagnostics = {
+              enable = true,
+              experimental = {
+                enable = true
+              }
+            },
+
+            cargo = {
+              allFeatures = true,
+              loadOutDirsFromCheck = true
+            },
+            procMacro = {
+              enable = true
+            }
+          }
+        }
+      }
+      vim.lsp.enable("rust")
+
       -- =================== Python ===================
       vim.lsp.config["pyright"] = {
         cmd = { "pyright-langserver", "--stdio" },

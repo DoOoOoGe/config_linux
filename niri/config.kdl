@@ -38,6 +38,29 @@ input {
     workspace-auto-back-and-forth // Enable workspace back & forth switching
 }
 
+// ────────────── Gestures ──────────────
+    gestures {
+        dnd-edge-view-scroll {
+            trigger-width 30
+            delay-ms 100
+            max-speed 1500
+        }
+
+        dnd-edge-workspace-switch {
+            trigger-height 50
+            delay-ms 100
+            max-speed 1500
+        }
+
+        hot-corners {
+            // off
+            top-left
+            // top-right
+            // bottom-left
+            // bottom-right
+        }
+    }
+
 // ────────────── Output Configuration ──────────────
 // You can run `niri msg outputs` to get the correct name for your displays.
 // You will have to remove "/-" and edit it before it takes effect.
@@ -167,17 +190,19 @@ binds {
     MOD+TAB                             { focus-workspace-previous; }
 
     // ─── Layout Controls ───
-    MOD+F                          { expand-column-to-available-width; }
+    MOD+F                               { maximize-column; }
     MOD+C                               { center-column; }
     MOD+CTRL+C                          { center-visible-columns; }
     MOD+MINUS                           { set-column-width "-2%"; }
     MOD+EQUAL                           { set-column-width "+2%"; }
     MOD+SHIFT+MINUS                     { set-window-height "-2%"; }
     MOD+SHIFT+EQUAL                     { set-window-height "+2%"; }
+    MOD+R                               { switch-preset-column-width; }
+    MOD+A                               { toggle-window-rule-opacity; }
 
     // ─── Modes ───
     MOD+T                               { toggle-window-floating; }
-    MOD+ALT+F                               { fullscreen-window; }
+    MOD+ALT+F                           { fullscreen-window; }
     MOD+W                               { toggle-column-tabbed-display; }
 
     // ─── Screenshots ───
@@ -220,9 +245,12 @@ binds {
         default-column-display "normal"
 
         preset-column-widths {
+            proportion 0.25
             proportion 0.33333
             proportion 0.5
             proportion 0.66667
+            proportion 0.75
+            proportion 1.0
         }
 
         focus-ring {
@@ -242,29 +270,54 @@ binds {
         struts {}
     }
 
+// ────────────── Recent Windows ──────────────
+    recent-windows {
+        // off
+        debounce-ms 1000
+
+        open-delay-ms 150
+
+        highlight {
+            padding 10  
+            corner-radius 10
+        }
+
+        previews {
+            max-height 500
+            max-scale 0.5
+        }
+
+        binds {
+            ALT+TAB         { next-window     scope="output"; } 
+            ALT+SHIFT+TAB   { previous-window scope="output"; }
+
+            ALT+GRAVE       { next-window     scope="output" filter="app-id"; }
+            ALT+SHIFT+GRAVE { previous-window scope="output" filter="app-id"; }
+        }
+    }
+
 // ────────────── Animation Settings ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
     animations {
         slowdown 1.0
         workspace-switch {
-            spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+            spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
         }
         window-open {
-            duration-ms 200
-            curve "ease-out-cubic"
+            spring damping-ratio=0.6 stiffness=400 epsilon=0.0001
         }
         window-close {
             duration-ms 230
             curve "ease-out-quad"
         }
         horizontal-view-movement {
-            spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+            spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
         }
         window-movement {
-            spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+            spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
         }
         window-resize {
-            spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+            spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
         }
         config-notification-open-close {
             spring damping-ratio=0.6 stiffness=1200 epsilon=0.001
@@ -274,7 +327,7 @@ binds {
             curve "ease-out-quad"
         }
         overview-open-close {
-            spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+            spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
         }
     }
 
@@ -289,6 +342,8 @@ binds {
     window-rule {
         geometry-corner-radius 20 // Set every window radius to 20
         clip-to-geometry true
+        draw-border-with-background true
+        opacity 0.96
     }
 
 // -------------- Debug ----------------
