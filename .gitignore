@@ -2,6 +2,7 @@ cava/themes/noctalia
 kitty/current-theme.conf
 kitty/themes/noctalia.conf
 niri/noctalia.kdl
+niri/color-theme.kdl
 noctalia/colors.json
 alacritty/themes/
 noctalia/plugins/

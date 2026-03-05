@@ -1,6 +1,8 @@
 [config]
 
-[templates]
+[templates.niri]
+input_path = "~/.config/noctalia/user-templates/niri/gradient.kdl"
+output_path = "~/.config/niri/color-theme.kdl"
 
 # User-defined templates
 # Add your custom templates below
@@ -14,4 +16,5 @@
 #[templates.placeholder]
 #input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/MatugenTemplates/noctalia.json"
 #output_path = "/home/cc/.cache/noctalia/placeholder.json"
+
 
