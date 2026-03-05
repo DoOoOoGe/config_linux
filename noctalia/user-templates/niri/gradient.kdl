@@ -8,5 +8,9 @@ layout {
     active-gradient from="{{colors.tertiary.default.hex | set_saturation 80 | set_lightness 70 | set_alpha 0.8}}" to="{{colors.primary.default.hex | set_saturation 80 | set_lightness 70 | set_alpha 0.8}}" angle=45 in="oklch shorter hue"
     inactive-color "{{colors.primary.default.hex}}"
   }
+
+  shadow {
+    color "{{colors.outline.default.hex | set_alpha 0.8}}"
+  }
 }
 

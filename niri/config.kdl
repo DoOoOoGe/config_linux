@@ -118,6 +118,8 @@ binds {
     MOD+DOWN                            { focus-window-down; }
     MOD+J                               { focus-window-down; }
 
+    MOD+CTRL+T                          { switch-focus-between-floating-and-tiling; }
+
     MOD+CTRL+LEFT                       { move-column-left; }
     MOD+CTRL+H                          { move-column-left; }
     MOD+CTRL+RIGHT                      { move-column-right; }
@@ -190,7 +192,8 @@ binds {
     MOD+TAB                             { focus-workspace-previous; }
 
     // ─── Layout Controls ───
-    MOD+F                               { maximize-column; }
+    MOD+F                               { maximize-window-to-edges; }
+    MOD+CTRL+F                          { maximize-column; }
     MOD+C                               { center-column; }
     MOD+CTRL+C                          { center-visible-columns; }
     MOD+MINUS                           { set-column-width "-2%"; }
@@ -198,11 +201,13 @@ binds {
     MOD+SHIFT+MINUS                     { set-window-height "-2%"; }
     MOD+SHIFT+EQUAL                     { set-window-height "+2%"; }
     MOD+R                               { switch-preset-column-width; }
+    MOD+SHIFT+R                         { switch-preset-column-width-back; }
     MOD+A                               { toggle-window-rule-opacity; }
 
     // ─── Modes ───
     MOD+T                               { toggle-window-floating; }
-    MOD+ALT+F                           { fullscreen-window; }
+    MOD+F11                             { fullscreen-window; }
+    MOD+ALT+F                           { toggle-windowed-fullscreen; }
     MOD+W                               { toggle-column-tabbed-display; }
 
     // ─── Screenshots ───
@@ -237,7 +242,7 @@ binds {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 
     layout {
-        gaps 8 // Gap between windows
+        gaps 10 // Gap between windows
         center-focused-column "never" // Don’t auto-center focused column
 
         always-center-single-column // always center when the workspace has only one column
@@ -261,8 +266,8 @@ binds {
 
         shadow {
             on
-            softness 20
-            spread 10
+            softness 80
+            spread 1
             offset x=0 y=0
             color "#000000"
         }
