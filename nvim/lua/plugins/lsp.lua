@@ -30,9 +30,9 @@ return {
         client.server_capabilities.documentHighlightProvider = false
 
         -- 开启 inlay hints
-        -- if client.server_capabilities.inlayHintProvider then
-        --   vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-        -- end
+        if client.server_capabilities.inlayHintProvider then
+          vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        end
       end
 
       -- =================== C / C++ ===================
@@ -93,25 +93,41 @@ return {
       vim.lsp.enable("rust")
 
       -- =================== Python ===================
-      vim.lsp.config["pyright"] = {
-        cmd = { "pyright-langserver", "--stdio" },
+      vim.lsp.config["pylsp"] = {
+        cmd = { "pylsp" },
+        filetypes = {"python"};
         root_markers = { "pyproject.toml", "setup.py", "requirements.txt", ".git" },
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
-          python = {
-            pythonPath = "./venv/bin/python", -- ⭐ 关键
-            analysis = {
-              typeCheckingMode = "basic",
-              autoSearchPaths = true,
-              diagnosticMode = "workspace",
-              useLibraryCodeForTypes = true,
-              reportAttributeAccessIssue = "none", -- ⭐ 解决 tf.keras
+          pylsp = {
+            -- 启用 pylsp 核心功能（按需开启/关闭）
+            plugins = {
+              -- 补全相关
+              jedi_completion = {
+                enabled = true,
+                fuzzy = true, -- 模糊匹配补全
+                include_params = true, -- 补全函数参数
+              },
+              -- 语法诊断（替代 pyright 的类型检查）
+              pyflakes = { enabled = true }, -- 基础语法检查
+              pylint = { enabled = false }, -- 若装了 pylint 可开启（可选）
+              mccabe = { enabled = false }, -- 复杂度检查（可选关闭）
+              -- 格式化（可选，需提前装 black/isort）
+              black = { enabled = false },
+              isort = { enabled = false },
+              -- 禁用不需要的插件（轻量化）
+              ruff = { enabled = false },
+              yapf = { enabled = false },
             },
+          },
+          -- 指定 Python 解释器（和之前逻辑一致，自动查找）
+          python = {
+            pythonPath = vim.fn.exepath("python3") ~= "" and vim.fn.exepath("python3") or vim.fn.exepath("python"),
           },
         },
       }
-      vim.lsp.enable("pyright")
+      vim.lsp.enable("pylsp")
 
       -- =================== Lua ===================
       vim.lsp.config["lua_ls"] = {
