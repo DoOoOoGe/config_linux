@@ -353,7 +353,12 @@ binds {
         geometry-corner-radius 20 // Set every window radius to 20
         clip-to-geometry true
         draw-border-with-background true
-        opacity 0.96
+        opacity 0.93
+    }
+
+    window-rule {
+        match is-active=true
+        opacity 1.0
     }
 
 // -------------- Debug ----------------
