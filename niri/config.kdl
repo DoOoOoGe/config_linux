@@ -235,7 +235,7 @@ binds {
     // spawn-sh-at-startup "waybar" // Launch waybar
     spawn-at-startup "qs" "-c" "noctalia-shell" // Wallpaper daemon
 
-    prefer-no-csd // Disable program decorations
+//    prefer-no-csd // Disable program decorations
     screenshot-path null // Disable screenshot saving
 
 // ────────────── Layout Settings ──────────────
@@ -278,6 +278,15 @@ binds {
         }
 
         struts {}
+    }
+
+// -------------- blur -----------------
+    blur {
+      // off
+      passes 2
+      offset 6
+      noise 0.02
+      saturation 1.5
     }
 
 // ────────────── Recent Windows ──────────────
@@ -352,13 +361,39 @@ binds {
     window-rule {
         geometry-corner-radius 20 // Set every window radius to 20
         clip-to-geometry true
-        draw-border-with-background true
-        opacity 0.93
+        draw-border-with-background false
+        opacity 0.90
+        background-effect {
+          blur true
+        }
+        popups {
+          geometry-corner-radius 15
+          opacity 0.8
+          background-effect {
+            blur true
+          }
+        }
     }
 
     window-rule {
         match is-active=true
-        opacity 1.0
+        opacity 0.93
+    }
+    
+    window-rule {
+      match is-floating=true
+      background-effect {
+        xray false
+      }
+    }
+
+// -------------- Layer Rules -----------
+    layer-rule {
+      match layer="top"
+      match layer="overlay"
+      background-effect {
+        xray false
+      }
     }
 
 // -------------- Debug ----------------
