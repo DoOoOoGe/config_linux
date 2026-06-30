@@ -242,7 +242,7 @@ binds {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 
     layout {
-        gaps 10 // Gap between windows
+        gaps 12 // Gap between windows
         center-focused-column "never" // Don’t auto-center focused column
 
         always-center-single-column // always center when the workspace has only one column
@@ -368,7 +368,7 @@ binds {
         }
         popups {
           geometry-corner-radius 15
-          opacity 0.8
+          opacity 0.88
           background-effect {
             blur true
           }
@@ -377,7 +377,7 @@ binds {
 
     window-rule {
         match is-active=true
-        opacity 0.93
+        opacity 0.95
     }
     
     window-rule {

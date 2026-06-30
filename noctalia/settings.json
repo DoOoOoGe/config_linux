@@ -41,14 +41,14 @@
     },
     "bar": {
         "autoHideDelay": 2000,
-        "autoShowDelay": 150,
+        "autoShowDelay": 500,
         "backgroundOpacity": 0.8,
         "barType": "simple",
         "capsuleColorKey": "none",
         "capsuleOpacity": 1,
         "contentPadding": 2,
-        "density": "comfortable",
-        "displayMode": "auto_hide",
+        "density": "default",
+        "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
         "fontScale": 1,
         "frameRadius": 12,
@@ -71,7 +71,7 @@
         "rightClickFollowMouse": true,
         "screenOverrides": [
         ],
-        "showCapsule": true,
+        "showCapsule": false,
         "showOnWorkspaceSwitch": true,
         "showOutline": false,
         "useSeparateOpacity": false,
@@ -170,7 +170,7 @@
                     "hideMode": "hidden",
                     "hideWhenIdle": false,
                     "id": "MediaMini",
-                    "maxWidth": 145,
+                    "maxWidth": 200,
                     "panelShowAlbumArt": true,
                     "scrollingMode": "always",
                     "showAlbumArt": true,
@@ -178,7 +178,7 @@
                     "showProgressRing": true,
                     "showVisualizer": false,
                     "textColor": "none",
-                    "useFixedWidth": true,
+                    "useFixedWidth": false,
                     "visualizerType": "wave"
                 },
                 {
@@ -235,6 +235,50 @@
                     "icon": "noctalia",
                     "id": "ControlCenter",
                     "useDistroLogo": false
+                },
+                {
+                    "defaultSettings": {
+                        "autoHeight": true,
+                        "bindOverrides": {
+                        },
+                        "cheatsheetData": [
+                        ],
+                        "columnCount": 3,
+                        "descriptionTextColor": "",
+                        "detectedCompositor": "",
+                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
+                        "hyprlandLuaConfigPath": "~/.config/hypr/hyprland.lua",
+                        "hyprlandParserMode": "auto",
+                        "keyColorAlt": "#FF6B6B",
+                        "keyColorCtrl": "",
+                        "keyColorDefault": "#6C757D",
+                        "keyColorMouse": "#F38181",
+                        "keyColorNumeric": "#A8DADC",
+                        "keyColorPrint": "#95E1D3",
+                        "keyColorShift": "",
+                        "keyColorSuper": "",
+                        "keyColorXF86": "#4ECDC4",
+                        "keyLabelColor": "#FFFFFF",
+                        "keyTextAlt": "",
+                        "keyTextCtrl": "",
+                        "keyTextDefault": "",
+                        "keyTextMouse": "",
+                        "keyTextNumeric": "",
+                        "keyTextPrint": "",
+                        "keyTextShift": "",
+                        "keyTextSuper": "",
+                        "keyTextXF86": "",
+                        "mangoConfigPath": "~/.config/mango/config.conf",
+                        "mergeSequentialBinds": true,
+                        "modKeyVariable": "$mod",
+                        "niriConfigPath": "~/.config/niri/config.kdl",
+                        "showUndescribedBinds": true,
+                        "splitLargeWorkspaceCategory": true,
+                        "windowHeight": 850,
+                        "windowWidth": 1400,
+                        "workspaceSplitThreshold": 12
+                    },
+                    "id": "plugin:keybind-cheatsheet"
                 }
             ]
         }
@@ -263,7 +307,7 @@
         ]
     },
     "colorSchemes": {
-        "darkMode": false,
+        "darkMode": true,
         "generationMethod": "content",
         "manualSunrise": "07:00",
         "manualSunset": "18:00",
@@ -312,6 +356,9 @@
                 },
                 {
                     "id": "WallpaperSelector"
+                },
+                {
+                    "id": "NoctaliaPerformance"
                 }
             ],
             "right": [
@@ -361,7 +408,7 @@
         "backgroundOpacity": 0.5,
         "colorizeIcons": false,
         "deadOpacity": 0.5,
-        "displayMode": "auto_hide",
+        "displayMode": "always_visible",
         "dockType": "floating",
         "enabled": false,
         "floatingRatio": 0,
@@ -384,11 +431,11 @@
         "pinnedApps": [
         ],
         "pinnedStatic": false,
-        "position": "left",
-        "showDockIndicator": true,
+        "position": "right",
+        "showDockIndicator": false,
         "showLauncherIcon": false,
         "sitOnFrame": false,
-        "size": 1
+        "size": 0.75
     },
     "general": {
         "allowPanelsOnScreenWithoutBar": true,
@@ -400,12 +447,12 @@
         "boxRadiusRatio": 1,
         "clockFormat": "hh\\nmm",
         "clockStyle": "digital",
-        "compactLockScreen": false,
+        "compactLockScreen": true,
         "dimmerOpacity": 0.2,
         "enableBlurBehind": true,
         "enableLockScreenCountdown": true,
-        "enableLockScreenMediaControls": false,
-        "enableShadows": true,
+        "enableLockScreenMediaControls": true,
+        "enableShadows": false,
         "forceBlackScreenCorners": false,
         "iRadiusRatio": 1,
         "keybinds": {
@@ -434,17 +481,17 @@
         },
         "language": "zh-CN",
         "lockOnSuspend": true,
-        "lockScreenAnimations": false,
+        "lockScreenAnimations": true,
         "lockScreenBlur": 0,
         "lockScreenCountdownDuration": 10000,
         "lockScreenMonitors": [
         ],
         "lockScreenTint": 0,
-        "passwordChars": false,
+        "passwordChars": true,
         "radiusRatio": 1,
         "reverseScroll": false,
         "scaleRatio": 1.05,
-        "screenRadiusRatio": 1.4000000000000001,
+        "screenRadiusRatio": 1,
         "shadowDirection": "bottom_right",
         "shadowOffsetX": 2,
         "shadowOffsetY": 3,
@@ -625,6 +672,13 @@
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
+                "keybind": "7"
+            },
+            {
+                "action": "userspaceReboot",
+                "command": "",
+                "countdownEnabled": true,
+                "enabled": false,
                 "keybind": ""
             }
         ],
@@ -708,7 +762,7 @@
         "fillColor": "#000000",
         "fillMode": "crop",
         "hideWallpaperFilenames": true,
-        "linkLightAndDarkWallpapers": true,
+        "linkLightAndDarkWallpapers": false,
         "monitorDirectories": [
         ],
         "overviewBlur": 0.4,
