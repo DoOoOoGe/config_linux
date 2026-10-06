@@ -16,28 +16,22 @@ input {
         // off
         tap
         dwt
-        // dwtp
-        // drag false
+        dwtp
+        drag true
         drag-lock
-		// pinch-sensitivity 1.5
         natural-scroll
-        accel-speed 0.1
-        // accel-profile "flat"
-        // scroll-factor 0.1
-        scroll-factor vertical=0.3 horizontal=0.3
+        accel-speed 0.0
+        accel-profile "flat"
+        // scroll-factor 1.0
+        scroll-factor vertical=1.0 horizontal=2.0
         scroll-method "two-finger"
-        // scroll-button 273
-        // scroll-button-lock
-        // tap-button-map "left-middle-right"
-        click-method "button-areas"
+        scroll-button 273
+        scroll-button-lock
+        tap-button-map "left-middle-right"
+        click-method "clickfinger"
         // left-handed
-        // disabled-on-external-mouse
-        // middle-emulation
-    }
-
-    mouse {
-	accel-profile "adaptive"
-	accel-speed -0.8
+        disabled-on-external-mouse
+        middle-emulation
     }
 
     // focus-follows-mouse // Automatically focus windows under the mouse pointer
@@ -74,13 +68,13 @@ input {
 
 output "Virtual-1" {
     mode "2560x1600@60.000" // Set resolution and refresh rate
-    scale 1.4 // No scaling (use 2 for HiDPI)
+    scale 1.5 // No scaling (use 2 for HiDPI)
 }
 
-// output "AU Optronics B160QAN02.7  Unknown" {
-//     mode "2560x1600@165.002"
-//     scale 1.5
-// }
+output "AU Optronics B160QAN02.7  Unknown" {
+    mode "2560x1600@165.002"
+    scale 1.5
+}
 
 // ────────────── Keybindings ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
@@ -91,8 +85,8 @@ binds {
     // ─── Applications ───
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: kitty" { spawn-sh "kitty -1"; }
     // MOD+SPACE                           hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
-    MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "microsoft-edge-stable"; }
-    // MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
+    MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
+    MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
     
     // Please choose your own file manager
     MOD+E                             hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus"; }
@@ -110,12 +104,12 @@ binds {
     XF86AudioPrev                       allow-when-locked=true { spawn-sh "playerctl previous"; }
 
     // --- quickshell ---
-    // MOD+I			                        	{ spawn-sh "qs -c noctalia-shell ipc call settings toggle"; }
-    // MOD+SPACE                      			{ spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
-    // MOD+P			                        	{ spawn-sh "qs -c noctalia-shell ipc call wallpaper toggle"; }
-    // MOD+V			                        	{ spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"; }
-    // MOD+F4	                        		{ spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
-    // MOD+F10                             { spawn-sh "qs -c noctalia-shell ipc call bar toggle"; }
+    MOD+I			                        	{ spawn-sh "qs -c noctalia-shell ipc call settings toggle"; }
+    MOD+SPACE                      			{ spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    MOD+P			                        	{ spawn-sh "qs -c noctalia-shell ipc call wallpaper toggle"; }
+    MOD+V			                        	{ spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"; }
+    MOD+F4	                        		{ spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    MOD+F10                             { spawn-sh "qs -c noctalia-shell ipc call bar toggle"; }
 
     // ─── Window Movement and Focus ───
     MOD+Q                               { close-window; }
@@ -176,13 +170,9 @@ binds {
 
     MOD+PAGE_UP                          { focus-workspace-up; }
     MOD+PAGE_DOWN                        { focus-workspace-down; }
-    MOD+P                          { focus-workspace-up; }
-    MOD+N                        { focus-workspace-down; }
 
     MOD+CTRL+PAGE_UP                          { move-column-to-workspace-up; }
     MOD+CTRL+PAGE_DOWN                        { move-column-to-workspace-down; }
-    MOD+CTRL+P                          { move-column-to-workspace-up; }
-    MOD+CTRL+N                        { move-column-to-workspace-down; }
 
     MOD+1                               { focus-workspace 1; }
     MOD+2                               { focus-workspace 2; }
@@ -258,7 +248,7 @@ binds {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 
     layout {
-        gaps 10 // Gap between windows
+        gaps 12 // Gap between windows
         center-focused-column "never" // Don’t auto-center focused column
 
         always-center-single-column // always center when the workspace has only one column
@@ -293,12 +283,7 @@ binds {
             gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to="workspace-view"
         }
 
-        struts {
-	    left 4 
-	    right 4
-	    top 4
-	    bottom 4
-	}
+        struts {}
     }
 
 // -------------- blur -----------------
@@ -380,22 +365,6 @@ binds {
     }
 
     window-rule {
-	match title=r#"画中画$"#
-	open-floating true
-    }
-
-    window-rule {
-	match title=r#"^$"#
-	open-floating true
-    }
-
-	// @id=wr_1789550363197297302 @name=org.gnome.Calculator
-	window-rule {
-		match app-id="^org.gnome.Calculator$"
-		open-floating true
-	}
-
-    window-rule {
         geometry-corner-radius 20 // Set every window radius to 20
         clip-to-geometry true
         draw-border-with-background false
@@ -411,35 +380,6 @@ binds {
           }
         }
     }
-
-	// @id=wr_1790125536579241018 @name=top.imsyy.splayer_next
-	window-rule {
-		match app-id="^top.imsyy.splayer_next$" title="^SPlayer-Next - Desktop Lyric$"
-		open-floating true
-		background-effect {
-			blur false
-		}
-		shadow {
-			off
-		}
-		opacity 1.00
-	}
-
-	// @id=wr_1791207416207322844 @name=top.imsyy.splayer_next
-	window-rule {
-		match title="^Dynamic Island$"
-		variable-refresh-rate true
-		clip-to-geometry true
-		tiled-state true
-		opacity 0.8
-		background-effect {
-			blur false
-		}
-		shadow {
-			off
-		}
-		default-floating-position x=0 y=0 relative-to="top"
-	}
 
     window-rule {
         match is-active=true
@@ -490,12 +430,15 @@ layer-rule {
 
 // include "./noctalia.kdl"
 // include "./color-theme.kdl"
-include "dms/alttab.kdl"
-include "dms/binds.kdl"
-include "dms/colors.kdl"
-include "dms/cursor.kdl"
-include "dms/layout.kdl"
-include "dms/outputs.kdl"
-include "dms/windowrules.kdl"
-include "dms/wpblur.kdl"
-include "matugen_template.kdl"
+include "./dms/alttab.kdl"
+include "./dms/binds.kdl"
+include "./dms/colors.kdl"
+include "./dms/cursor.kdl"
+include "./dms/layout.kdl"
+include "./dms/outputs.kdl"
+include "./dms/windowrules.kdl"
+include "./dms/wpblur.kdl"
+
+
+
+

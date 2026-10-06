@@ -1,6 +1,6 @@
 source /usr/share/cachyos-fish-config/cachyos-config.fish
 
-set -Ux EDITOR nvim
+set -Ux EDITOR vim
 
 export MESA_GLSL_CACHE_MAX_SIZE=512000
 export SVGA_VGPU10_MAX_SURFACES=1024

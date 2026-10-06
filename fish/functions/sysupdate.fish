@@ -1,3 +1,3 @@
 function sysupdate
-  sudo pacman -Syu
+  paru -Syu
 end

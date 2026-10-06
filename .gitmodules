@@ -1,0 +1,3 @@
+[submodule "vim/plugged/vim-sneak"]
+	path = vim/plugged/vim-sneak
+	url = https://github.com/justinmk/vim-sneak.git

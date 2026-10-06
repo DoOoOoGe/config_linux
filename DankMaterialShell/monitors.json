@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "configurations": [
+    {
+      "id": "auto_596cd3db",
+      "name": "",
+      "outputs": {
+        "AU Optronics B160QAN02.7  Unknown": {
+          "mode": "2560x1600@165.002",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1.3984375,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {
+            "layout": null,
+            "hotCorners": null
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+[config]
+
+[templates.niri]
+input_path = '/home/cc/.config/DankMaterialShell/niri_template.kdl'
+output_path = '/home/cc/.config/niri/matugen_template.kdl'
+
+[templates.test]
+input_path = '/home/cc/.config/matugen/test_template.txt'
+output_path = '/home/cc/.config/matugen/test_output.txt'
