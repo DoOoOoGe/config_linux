@@ -13,11 +13,12 @@
           },
           "scale": 1.3984375,
           "transform": "Normal",
-          "vrr": false,
+          "vrr": true,
           "disabled": false,
           "niri": {
             "layout": null,
-            "hotCorners": null
+            "hotCorners": null,
+            "vrrOnDemand": true
           }
         }
       }

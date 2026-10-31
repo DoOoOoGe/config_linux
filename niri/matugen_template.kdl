@@ -1,15 +1,15 @@
 layout {
   focus-ring {
-    active-gradient from="#7579EFCC" to="#75B2EFCC" angle=45 in="oklch shorter hue"
-    inactive-color "#97cbff"
+    active-gradient from="#E075EFCC" to="#7575EFCC" angle=45 in="oklch shorter hue"
+    inactive-color "#4e4e8e"
   }
 
   border {
-    active-gradient from="#7579EFCC" to="#75B2EFCC" angle=45 in="oklch shorter hue"
-    inactive-color "#97cbff"
+    active-gradient from="#E075EFCC" to="#7575EFCC" angle=45 in="oklch shorter hue"
+    inactive-color "#4e4e8e"
   }
 
   shadow {
-    color "#8A919BCC"
+    color "#716F75CC"
   }
 }

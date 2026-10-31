@@ -1,0 +1,14 @@
+{
+  "lockfileVersion": 1,
+  "plugins": {
+    "emojiLauncher": {
+      "repo": "https://github.com/devnullvoid/dms-emoji-launcher",
+      "commit": "35ea4d653417840b9045c77a9adb0188a4900086"
+    },
+    "quickCapture": {
+      "repo": "https://github.com/hthienloc/dms-plugins",
+      "path": "quickCapture",
+      "commit": "7e465375844609cd9294758b7de047c178d2305a"
+    }
+  }
+}

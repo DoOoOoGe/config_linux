@@ -6,4 +6,5 @@
 cursor {
     xcursor-theme "Adwaita"
     xcursor-size 31
+    hide-when-typing
 }

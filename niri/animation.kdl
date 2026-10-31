@@ -1,0 +1,123 @@
+// Animation settings.
+// The wiki explains how to configure individual animations:
+// https://yalter.github.io/niri/Configuration:-Animations
+animations {
+    // Uncomment to turn off all animations.
+    // off
+    // workspace-switch {
+    //     spring damping-ratio=0.75 stiffness=500 epsilon=0.0001
+    // }
+	window-close {
+		duration-ms 300
+		curve "linear"
+		custom-shader "vec4 fall_and_rotate(vec3 coords_geo, vec3 size_geo) {
+			// === 可调参数 ===
+			float fall_distance      = 1000.0;
+			float rotation_amplitude = 1.0;
+			float fade_speed         = 1.0;
+			float progress_curve     = 1.5;
+
+			// === 起跳上弹 ===
+			float hop_height   = 0.30;   // 上弹幅度（占 fall_distance 的比例）
+			float hop_duration = 0.90;   // 上弹时长（占总时长比例）
+			// ================
+
+			float t = niri_clamped_progress;
+
+			// 主下落进度（保留原来的加速下落手感）
+			float fall = pow(t, progress_curve);
+
+			// 起跳上抛：前 hop_duration 段抛物线，峰值在 u=0.5
+			// t >= hop_duration 时 u=1，hop 自动为 0，无缝衔接下落
+			float u = clamp(t / hop_duration, 0.0, 1.0);
+			float hop = -hop_height * 4.0 * u * (1.0 - u);   // 负值 = 视觉向上
+
+			// 位置进度：起跳段可能为负，之后转正下落
+			float pos_progress = fall + hop;
+
+			// 旋转是否也跟随起跳：默认只跟下落
+			float rot_progress = fall;
+
+			vec2 coords = (coords_geo.xy - vec2(0.5, 1.0)) * size_geo.xy;
+			coords.y -= pos_progress * fall_distance;
+
+			// 随机旋转
+			float random = (niri_random_seed - 0.5) / 2.0;
+			random = sign(random) - random;
+			float max_angle = rotation_amplitude * random;
+			float angle = rot_progress * max_angle;
+
+			mat2 rotate = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+			coords = rotate * coords;
+
+			coords_geo = vec3(coords / size_geo.xy + vec2(0.5, 1.0), 1.0);
+			vec3 coords_tex = niri_geo_to_tex * coords_geo;
+			vec4 color = texture2D(niri_tex, coords_tex.st);
+
+			// 淡出用 fall（非负）驱动，避免 hop 段把 alpha 拉 >1
+			color.a *= clamp(1.0 - fall * fade_speed, 0.0, 1.0);
+
+			return color;
+		}
+		vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+			return fall_and_rotate(coords_geo, size_geo);
+		}"
+	}
+    window-open {
+        duration-ms 300
+        curve "linear"
+        custom-shader "vec4 fall_from_top(vec3 coords_geo, vec3 size_geo) {
+            // === 缓和回弹参数 ===
+            float overshoot_strength = 0.6;     // 曲线超出
+            float bounce_amplitude = 0.5;       // 旋转回弹
+            float bounce_frequency = 1.0;        // 震荡次数
+            float max_rotation = 0.6;            // 旋转幅度
+            float fall_distance = 1000.0;        // 下落距离
+            // === 可调参数结束 ===
+
+            float c1 = overshoot_strength * 0.85;
+            float c3 = c1 + 1.0;
+            float progress = 1.0 + c3 * pow(niri_clamped_progress - 1.0, 3.0) + c1 * pow(niri_clamped_progress - 1.0, 2.0);
+
+            vec2 coords = (coords_geo.xy - vec2(0.5, 0.0)) * size_geo.xy;
+            coords.y += (1.0 - progress) * fall_distance;
+
+            float angle_factor = 1.0 - progress;
+            float overshoot = 1.0 + bounce_amplitude * sin(progress * 3.14159 * bounce_frequency) * (1.0 - progress);
+            float angle = angle_factor * max_rotation * overshoot;
+
+            mat2 rotate = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+            coords = rotate * coords;
+            coords_geo = vec3(coords / size_geo.xy + vec2(0.5, 0.0), 1.0);
+            vec3 coords_tex = niri_geo_to_tex * coords_geo;
+            return texture2D(niri_tex, coords_tex.st);
+        }
+        vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+            return fall_from_top(coords_geo, size_geo);
+        }"
+    }
+
+    // horizontal-view-movement {
+    //     spring damping-ratio=0.75 stiffness=500 epsilon=0.0001
+    // }
+    // window-movement {
+    //     spring damping-ratio=0.75 stiffness=500 epsilon=0.0001
+    // }
+    // window-resize {
+    //     spring damping-ratio=0.75 stiffness=500 epsilon=0.0001
+    // }
+    // config-notification-open-close {
+    //     spring damping-ratio=0.5 stiffness=500 epsilon=0.0001
+    // }
+    // exit-confirmation-open-close {
+    //     spring damping-ratio=0.5 stiffness=500 epsilon=0.0001
+    // }
+    // screenshot-ui-open {
+    //     spring damping-ratio=0.75 stiffness=500 epsilon=0.0001
+    // }
+    // overview-open-close {
+    //     spring damping-ratio=0.75 stiffness=500 epsilon=0.0001
+    // }
+    // Slow down all animations by this factor. Values below 1 speed them up instead.
+    // slowdown 3.0
+}

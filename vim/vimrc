@@ -93,11 +93,15 @@ set clipboard=unnamed
 " vim-sneak 的配置
 let g:sneak#label = 1
 
+" fcitx.vim 的配置
+let g:fcitx5_remote = '/usr/bin/fcitx5-remote'
+
 " 插件
 call plug#begin('~/.config/vim/plugged')
 " 	Plug 'neomake/neomake'
 " 	" Plug 'easymotion/vim-easymotion'
 	Plug 'justinmk/vim-sneak'
+	Plug 'lilydjwg/fcitx.vim'
 call plug#end()
 
 " Try to prevent bad habits like using the arrow keys for movement. This is

@@ -1,0 +1,22 @@
+{
+  "dankKDEConnect": {
+    "enabled": true,
+    "selectedDeviceId": "dbcd3eb2ff2a4ce5a3cfdcde92a7f394"
+  },
+  "emojiLauncher": {
+    "enabled": true,
+    "pasteOnSelect": false
+  },
+  "mediaControlPlus": {
+    "enabled": true
+  },
+  "quickCapture": {
+    "enabled": true,
+    "show_shortcut_hints": true,
+    "color_palette_preset": "dracula",
+    "registry_theme_variant": "dark"
+  },
+  "materialPlayer": {
+    "enabled": true
+  }
+}
